@@ -44,5 +44,12 @@
         }
       }
     }
+  },
+  "storage": {
+    "demoContent": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }
