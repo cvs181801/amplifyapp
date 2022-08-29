@@ -1,10 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { API, Storage } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { API, autoShowTooltip, Storage } from 'aws-amplify';
+import { withAuthenticator, AmplifySignOut} from '@aws-amplify/ui-react';
+//import { AmplifyS3Text } from '@aws-amplify/ui-react/legacy';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+
+//console.log('AmplifyS3Text' , AmplifyS3Text)
 
 const initialFormState = { name: '', description: '' }
 
@@ -57,31 +60,47 @@ function App() {
   return (
     <div className="App">
       <h1>My Notes App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Note name"
-        value={formData.name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Note description"
-        value={formData.description}
-      />
-      <input
-        type="file"
-        onChange={onChange}
-      />
-      <button onClick={createNote}>Create Note</button>
-      <div style={{marginBottom: 30}}>
+
+      <div
+        className="formContainer"
+      >
+        <input
+          onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+          placeholder="Note name"
+          value={formData.name}
+        />
+        <input
+          onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+          placeholder="Note description"
+          value={formData.description}
+        />
+        <input
+          type="file"
+          onChange={onChange}
+        />
+        <button 
+          onClick={createNote}
+          className="createNoteBtn"
+          >Create Note</button>
+      </div>
+
+      <div 
+        className="gridContainer"
+      >
         {
           notes.map(note => (
-            <div key={note.id || note.name}>
+            <div 
+              key={note.id || note.name}
+              className="card"
+            >
               <h2>{note.name}</h2>
               <p>{note.description}</p>
-              <button onClick={() => deleteNote(note)}>Delete note</button>
               {
-                note.image && <img src={note.image} style={{width: 400}} />
+                note.image && <img src={note.image} style={{
+                  width: '100%'
+                }} />
               }
+              <button onClick={() => deleteNote(note)} className="deleteNoteBtn">Delete note</button>
             </div>
           ))
         }

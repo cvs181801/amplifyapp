@@ -1,5 +1,52 @@
+:root {
+  --amplify-primary-color: #03841b;
+}
+
 .App {
   text-align: center;
+}
+
+.gridContainer {
+  margin: 1em;
+  justify-content: center;
+  display: grid;
+  grid-gap: .5em;
+  grid-template-columns: 20% 20% 20%;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin: 0 auto;
+  border: 1px solid grey;
+  padding: 1em;
+  border-radius: .3em;
+}
+
+input {
+  margin-bottom: .5em;
+}
+
+.createNoteBtn {
+  width: 6em;
+  border-radius: .1em;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.card {
+  border: 1px solid grey;
+  border-radius: .3em;
+}
+
+.deleteNoteBtn {
+  border: 1px solid grey;
+  border-radius: .1em;
+  background: none;
+  margin-bottom: .2em;
+  cursor: pointer;
+  color: grey;
 }
 
 .App-logo {
